@@ -8,7 +8,7 @@ export default {
     extend: {
       colors:{
         // eslint-disable-next-line no-undef
-        primary: colors.yellow,
+        // primary: colors.yellow,
       }
     },
   },
