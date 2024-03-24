@@ -1,5 +1,6 @@
 import {faker} from '@faker-js/faker'
 import RestartButton from './components/RestartButton';
+import Results from './components/Results';
 
 
 // function words() {
@@ -35,7 +36,12 @@ function App() {
         className={"mx-auto mt-10 text-slate-500"}
         onRestart={() => null}
          />
-      
+      <Results 
+      className="mt-10"
+      errors={10}
+      accuracyPercentage={100}
+      total={200}
+      />
     </div>
   )
 }

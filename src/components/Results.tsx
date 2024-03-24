@@ -1,8 +1,19 @@
-import React from 'react'
 
-const Results = () => {
+
+const Results = ({errors, accuracyPercentage, total, className} : {
+    errors: number; 
+    accuracyPercentage: number;
+    total: number
+    className?: string;
+}) => {
   return (
-    <div>Results</div>
+    <ul className={`flex flex-col items-center text-yellow-500 space-y-3 ${className}}`}>
+       <li className="text-xl font-semibold">Results</li>
+       <li>Accuracy: {accuracyPercentage}</li>
+       <li>Errors: {errors}</li>
+       <li> Typed: {total}</li> 
+    
+    </ul>
   )
 }
 
