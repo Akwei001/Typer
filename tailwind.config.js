@@ -1,4 +1,5 @@
 /** @type {import('tailwindcss').Config} */
+// import { colors } from 'tailwindcss/defaultTheme';
 export default {
   content: [
     "./index.html",
@@ -8,7 +9,7 @@ export default {
     extend: {
       colors:{
         // eslint-disable-next-line no-undef
-        // primary: colors.yellow,
+        // primary: colors.yellow-[500],
       }
     },
   },

@@ -1,4 +1,6 @@
 import {faker} from '@faker-js/faker'
+import RestartButton from './components/RestartButton';
+
 
 // function words() {
 //   return faker.person.firstName()
@@ -29,6 +31,10 @@ function App() {
       {showNames.map((name, index) => (
         <span key={index}>{name} </span>
       ))}
+      <RestartButton
+        className={"mx-auto mt-10 text-slate-500"}
+        onRestart={() => null}
+         />
       
     </div>
   )
