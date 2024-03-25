@@ -1,4 +1,4 @@
-
+import {motion} from "framer-motion";
 
 const Results = ({errors, accuracyPercentage, total, className} : {
     errors: number; 
@@ -6,6 +6,8 @@ const Results = ({errors, accuracyPercentage, total, className} : {
     total: number
     className?: string;
 }) => {
+    const initial = {opacity: 0}
+
   return (
     <ul className={`flex flex-col items-center text-yellow-500 space-y-3 ${className}}`}>
        <li className="text-xl font-semibold">Results</li>
