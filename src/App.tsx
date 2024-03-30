@@ -1,6 +1,9 @@
 import {faker} from '@faker-js/faker'
 import RestartButton from './components/RestartButton';
 import Results from './components/Results';
+import UserTypings from './components/UserTypings';
+
+
 
 
 // function words() {
@@ -29,9 +32,13 @@ function App() {
   return (
     <div className="text-4xl text-center text-slate-500">
       <CountdownTimer timeLeft={30} />
+      <div className="relative max-w-xl">
       {showNames.map((name, index) => (
         <span key={index}>{name} </span>
       ))}
+      <UserTypings className="absolute inset-0" userInput={showNames}/>
+      </div>
+     
       <RestartButton
         className={"mx-auto mt-10 text-slate-500"}
         onRestart={() => null}
