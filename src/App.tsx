@@ -6,21 +6,28 @@ import UserTypings from './components/UserTypings';
 
 
 
-// function words() {
-//   return faker.person.firstName()
-// }
+const Words =() => {
+  
+  const words = faker.person.firstName();
+  console.log(words)
+  return words;
 
-const Names = () => { 
-
-  const randomNames = [];
-
-  for (let i = 0; i < 10; i++) {
-    randomNames.push(faker.person.firstName());
-  }
-
-  return randomNames;
+}
  
-};
+  
+
+// console.log(Words)
+// const Names = () => { 
+
+//   const randomNames = [];
+
+//   for (let i = 0; i < 10; i++) {
+//     randomNames.push(faker.person.firstName());
+//   }
+
+//   return randomNames;
+ 
+// };
 
 const CountdownTimer = ({ timeLeft }: { timeLeft: number }) => {
   return <h2 className="font-medium text-yellow-400">Time: {timeLeft}</h2>;
