@@ -1,15 +1,10 @@
 import {faker} from '@faker-js/faker'
 import RestartButton from './components/RestartButton';
 import Results from './components/Results';
-// import UserTypings from './components/UserTypings';
+import UserTypings from './components/UserTypings';
 
 
-
-
-
-
-
- const GenerategameWords = (): string[] => {
+ const GenerategameWords = (): [string[],string[] ]=> {
 
   const generateWord = (): string => { 
 
@@ -28,14 +23,14 @@ import Results from './components/Results';
 
 console.log(gameWord)
 
- return gameWord;
+const gameWordsCopy = [...gameWord]; // Create a copy of the game words
+
+return [gameWord, gameWordsCopy];
 
  
  };
 
- function GameWordList() {
-  const gameWords = GenerategameWords();
-
+ function GameWordList({ gameWords }: { gameWords: string[] }) {
   return (
     <div>
       {gameWords.map((word, index) => (
@@ -45,22 +40,7 @@ console.log(gameWord)
   );
 }
 
-  //  const test = GenerategameWords();
- 
-  // console.log(test)
-
-// console.log(Words)
-// const Names = () => { 
-
-//   const randomNames = [];
-
-//   for (let i = 0; i < 10; i++) {
-//     randomNames.push(faker.person.firstName());
-//   }
-
-//   return randomNames;
- 
-// };
+//  const words = GenerategameWords();
 
 const CountdownTimer = ({ timeLeft }: { timeLeft: number }) => {
   return <h2 className="font-medium text-yellow-400">Time: {timeLeft}</h2>;
@@ -68,17 +48,17 @@ const CountdownTimer = ({ timeLeft }: { timeLeft: number }) => {
 
 
 function App() {
-  // const showNames = Names();
+
+  const [gameWords, gameWordsCopy] = GenerategameWords();
+
   return (
     <div className="text-4xl text-center text-slate-500">
       <CountdownTimer timeLeft={30} />
       <div className="relative max-w-xl">
         
-      {/* {showNames.map((name, index) => (
-        <span key={index}>{name} </span>
-      ))} */}
-      <GameWordList/>
-      {/* <UserTypings className="absolute inset-0" userInput={}/> */}
+      
+      <GameWordList gameWords={gameWords} />
+      <UserTypings className="absolute inset-0" userInput={gameWordsCopy}/>
 
       </div>
      

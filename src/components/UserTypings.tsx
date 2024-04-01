@@ -1,9 +1,9 @@
 const UserTypings = ({userInput, className}: {
-    userInput: string; 
+    userInput: string[]; 
     className?: string
 
 }) => {
-    const typedCharacters = userInput.split("")
+    const typedCharacters = userInput.join("").split("")
 
     return (
             <div className={className}>
