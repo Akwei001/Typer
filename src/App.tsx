@@ -1,20 +1,53 @@
 import {faker} from '@faker-js/faker'
 import RestartButton from './components/RestartButton';
 import Results from './components/Results';
-import UserTypings from './components/UserTypings';
+// import UserTypings from './components/UserTypings';
 
 
 
 
-const Words =() => {
+
+
+
+ const GenerategameWords = (): string[] => {
+
+  const generateWord = (): string => { 
+
+    const word: string = faker.person.firstName();
   
-  const words = faker.person.firstName();
-  console.log(words)
-  return words;
+    // console.log(word)
+    return word
+  
+   }
 
-}
+ const gameWord: string[] = [];
+
+ Array.from({length: 10}).forEach(() => {
+  return gameWord.push(generateWord());
+ })
+
+console.log(gameWord)
+
+ return gameWord;
+
  
-  
+ };
+
+ function GameWordList() {
+  const gameWords = GenerategameWords();
+
+  return (
+    <div>
+      {gameWords.map((word, index) => (
+        <span key={index}>{word} </span>
+      ))}
+    </div>
+  );
+}
+
+  //  const test = GenerategameWords();
+ 
+  // console.log(test)
 
 // console.log(Words)
 // const Names = () => { 
@@ -35,15 +68,18 @@ const CountdownTimer = ({ timeLeft }: { timeLeft: number }) => {
 
 
 function App() {
-  const showNames = Names();
+  // const showNames = Names();
   return (
     <div className="text-4xl text-center text-slate-500">
       <CountdownTimer timeLeft={30} />
       <div className="relative max-w-xl">
-      {showNames.map((name, index) => (
+        
+      {/* {showNames.map((name, index) => (
         <span key={index}>{name} </span>
-      ))}
-      <UserTypings className="absolute inset-0" userInput={showNames}/>
+      ))} */}
+      <GameWordList/>
+      {/* <UserTypings className="absolute inset-0" userInput={}/> */}
+
       </div>
      
       <RestartButton
