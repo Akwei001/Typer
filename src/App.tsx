@@ -34,7 +34,7 @@ return [gameWord, gameWordsCopy];
   return (
     <div>
       {gameWords.map((word, index) => (
-        <span key={index}>{word} </span>
+        <span key={index} className=' text-slate-500'>{word}</span>
       ))}
     </div>
   );
@@ -52,15 +52,12 @@ function App() {
   const [gameWords, gameWordsCopy] = GenerategameWords();
 
   return (
-    <div className="text-4xl text-center text-slate-500">
+    <span className="text-4xl text-center text-slate-500">
       <CountdownTimer timeLeft={30} />
-      <div className="relative max-w-xl">
-        
-      
-      <GameWordList gameWords={gameWords} />
-      <UserTypings className="absolute inset-0" userInput={gameWordsCopy}/>
-
-      </div>
+      <span className="relative max-w-xl text-3xl leading-relaxed break-all mt">
+      <GameWordList gameWords={gameWords}/>
+      <UserTypings className="absolute inset-0" userInput={gameWordsCopy} />
+      </span>
      
       <RestartButton
         className={"mx-auto mt-10 text-slate-500"}
@@ -72,7 +69,7 @@ function App() {
       accuracyPercentage={100}
       total={200}
       />
-    </div>
+    </span>
   )
 }
 

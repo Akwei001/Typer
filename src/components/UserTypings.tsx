@@ -3,7 +3,7 @@ const UserTypings = ({userInput, className}: {
     className?: string
 
 }) => {
-    const typedCharacters = userInput.join("").split("")
+    const typedCharacters = userInput.join("").split(" ")
 
     return (
             <div className={className}>
@@ -17,7 +17,7 @@ const UserTypings = ({userInput, className}: {
  };
 
  const Character = ({char} : { char: string}) => {
-    return <span className="text-yellow-400">{char}</span>  
+    return <span className="text-yellow-500">{char}</span>  
  }
 
 export default UserTypings;
