@@ -46,6 +46,16 @@ const CountdownTimer = ({ timeLeft }: { timeLeft: number }) => {
   return <h2 className="font-medium text-yellow-400">Time: {timeLeft}</h2>;
 };
 
+const WordsContainer = ({children} : {children: React.ReactNode}) => {
+
+return (
+  <div>
+    {children}
+  </div>
+)
+
+}
+
 
 function App() {
 
@@ -54,10 +64,12 @@ function App() {
   return (
     <span className="text-4xl text-center text-slate-500">
       <CountdownTimer timeLeft={30} />
-      <span className="relative max-w-xl text-3xl leading-relaxed break-all mt">
+      <WordsContainer>
       <GameWordList gameWords={gameWords}/>
       <UserTypings className="absolute inset-0" userInput={gameWordsCopy} />
-      </span>
+      </WordsContainer>
+      
+      
      
       <RestartButton
         className={"mx-auto mt-10 text-slate-500"}
