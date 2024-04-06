@@ -4,6 +4,8 @@ import Results from './components/Results';
 import UserTypings from './components/UserTypings';
 
 
+
+
  const GenerategameWords = (): [string[],string[] ]=> {
 
   const generateWord = (): string => { 
@@ -49,7 +51,7 @@ const CountdownTimer = ({ timeLeft }: { timeLeft: number }) => {
 const WordsContainer = ({children} : {children: React.ReactNode}) => {
 
 return (
-  <div>
+  <div className="relative max-w-xl mt-3 text-3xl leading-relaxed break-all">
     {children}
   </div>
 )
@@ -62,9 +64,10 @@ function App() {
   const [gameWords, gameWordsCopy] = GenerategameWords();
 
   return (
-    <span className="text-4xl text-center text-slate-500">
+    <div className="text-4xl text-center text-slate-500">
       <CountdownTimer timeLeft={30} />
       <WordsContainer>
+   
       <GameWordList gameWords={gameWords}/>
       <UserTypings className="absolute inset-0" userInput={gameWordsCopy} />
       </WordsContainer>
@@ -81,7 +84,7 @@ function App() {
       accuracyPercentage={100}
       total={200}
       />
-    </span>
+    </div>
   )
 }
 
