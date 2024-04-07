@@ -2,6 +2,7 @@ import {faker} from '@faker-js/faker'
 import RestartButton from './components/RestartButton';
 import Results from './components/Results';
 import UserTypings from './components/UserTypings';
+import useEngine from './hooks/useEngine';
 
 
 
@@ -23,7 +24,7 @@ import UserTypings from './components/UserTypings';
   return gameWord.push(generateWord());
  })
 
-console.log(gameWord)
+// console.log(gameWord)
 
 const gameWordsCopy = [...gameWord]; // Create a copy of the game words
 
@@ -60,12 +61,12 @@ return (
 
 
 function App() {
-
+  const {state, words, timeLeft} = useEngine();
   const [gameWords, gameWordsCopy] = GenerategameWords();
 
   return (
     <div className="text-4xl text-center text-slate-500">
-      <CountdownTimer timeLeft={30} />
+      <CountdownTimer timeLeft={timeLeft} />
       <WordsContainer>
    
       <GameWordList gameWords={gameWords}/>
