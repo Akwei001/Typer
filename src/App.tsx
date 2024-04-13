@@ -61,7 +61,7 @@ return (
 
 
 function App() {
-  const {state, words, timeLeft} = useEngine();
+  const {state, words, timeLeft, typed} = useEngine();
   const [gameWords, gameWordsCopy] = GenerategameWords();
 
   return (
@@ -70,7 +70,7 @@ function App() {
       <WordsContainer>
    
       <GameWordList gameWords={gameWords}/>
-      <UserTypings className="absolute inset-0" userInput={gameWordsCopy} />
+      <UserTypings className="absolute inset-0" userInput={[typed]} />
       </WordsContainer>
       
       
