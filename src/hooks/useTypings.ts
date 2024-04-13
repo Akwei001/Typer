@@ -33,13 +33,13 @@ const useTypings = (enabled: boolean) => {
               totalTyped.current += 1;
           }
         },
-        [enabled, enabled]
+        [enabled]
       );
 
-      const clearTyped = useCallback(() => {
-        setTyped("");
-        setTyped(0)
-      },[])
+  const clearTyped = useCallback(() => {
+    setTyped("");
+    setCursor(0);
+  }, []);
 
       const resetTotalTyped = useCallback(() => {
         totalTyped.current = 0;
@@ -71,16 +71,16 @@ return{
 
 export default useTypings;
 
-function useRef(arg0: number) {
-    throw new Error("Function not implemented.");
-}
+// function useRef(arg0: number) {
+//     throw new Error("Function not implemented.");
+// }
 
 
-function isKeyboardCodeallowed(code: string) {
-    throw new Error("Function not implemented.");
-}
+// function isKeyboardCodeallowed(code: string) {
+//     throw new Error("Function not implemented.");
+// }
 
 
-function keydownHandler(this: Window, ev: KeyboardEvent) {
-    throw new Error("Function not implemented.");
-}
+// function keydownHandler(this: Window, ev: KeyboardEvent) {
+//     throw new Error("Function not implemented.");
+// }
