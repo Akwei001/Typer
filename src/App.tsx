@@ -70,7 +70,7 @@ function App() {
       <WordsContainer>
    
       <GameWordList gameWords={gameWords}/>
-      <UserTypings className="absolute inset-0" userInput={[typed]} />
+      <UserTypings className="absolute inset-0" userInput={[typed]} words={words} />
       </WordsContainer>
       
       
