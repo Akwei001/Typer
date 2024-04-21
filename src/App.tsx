@@ -3,6 +3,8 @@ import RestartButton from './components/RestartButton';
 import Results from './components/Results';
 import UserTypings from './components/UserTypings';
 import useEngine from './hooks/useEngine';
+import { randomWordString } from './utils/data';
+import { generateRandomWords } from './utils/generateRandomWords';
 
 
 

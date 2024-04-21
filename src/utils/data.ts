@@ -7,7 +7,7 @@ const randomWords: string[] = [
   ];
   
   // Generate a string of 12 random words
-  const generateRandomWords = (count: number): string => {
+   export const generateRandomWords = (count: number): string => {
     let result = '';
     for (let i = 0; i < count; i++) {
       const randomIndex = Math.floor(Math.random() * randomWords.length);
@@ -17,6 +17,6 @@ const randomWords: string[] = [
   };
   
   // Generate a string of 12 random words
-  const randomWordString: string = generateRandomWords(12);
+  export const randomWordString: string = generateRandomWords(12);
   
   console.log('Random Words:', randomWordString);
