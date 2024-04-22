@@ -7,6 +7,14 @@ import { randomWordString } from './utils/data';
 import { generateRandomWords } from './utils/generateRandomWords';
 
 
+const someWords: () => void() => {
+  const words = generateRandomWords(10);
+  console.log(words);
+  someWords();
+  return words;
+}
+
+
 
 
  const GenerategameWords = (): [string[],string[] ]=> {
