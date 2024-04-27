@@ -108,7 +108,7 @@ function App() {
   // const [gameWords, gameWordsCopy] = GenerategameWords();
 
   return (
-    <div className="text-4xl text-center text-slate-500">
+    <>
       <CountdownTimer timeLeft={timeLeft} />
       <WordsContainer>
    
@@ -129,7 +129,7 @@ function App() {
       accuracyPercentage={100}
       total={200}
       />
-    </div>
+    </>
   )
 }
 
