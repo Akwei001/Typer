@@ -1,42 +1,63 @@
-import {faker} from '@faker-js/faker';
+// import {faker} from '@faker-js/faker';
 import {useCallback, useState} from 'react';
 
-
-
-const generateWords = () => {
-
-    //  const wordCount = 12
-
+// An array of random words
+const randomWords: string[] = [
+    'apple', 'banana', 'carrot', 'dog', 'elephant', 'flower', 'guitar',
+    'happiness', 'island', 'jungle', 'koala', 'lemon', 'mountain', 'ninja',
+    'orange', 'penguin', 'queen', 'rainbow', 'sunset', 'tiger', 'unicorn',
+    'victory', 'watermelon', 'xylophone', 'yoga', 'zebra'
+  ];
   
+  // Generate a string of 12 random words
+  const generateRandomWords = (count: number): string => {
+    let result = '';
+    for (let i = 0; i < count; i++) {
+      const randomIndex = Math.floor(Math.random() * randomWords.length);
+      result += randomWords[randomIndex];
+      if (i < count - 1) {
+        // Add a space after each word except the last one
+        result += ' ';
+      }
+    }
+    return result;
+  };
+  
+  
+  // Generate a string of 12 random words
+   const randomWordString: string = generateRandomWords(0);
+  
+  console.log('Random Words:', randomWordString);
 
-  const gWord = faker.person.firstName().toLowerCase();
 
-  console.log(gWord) 
 
-    return gWord
-        
-    // loop a string or array to produce a number to then put into count
+
+const generateWords = (count: number) => {
+
+    return generateRandomWords(count).toLowerCase();
+
+ 
 }
 
-const wordNumber: string[] = [];
+// const wordNumber: string[] = [];
 
-Array.from({length: 12}).forEach(() => {
+// Array.from({length: 12}).forEach(() => {
   
-    console.log("I work")
+//     console.log("I work")
 
- return   wordNumber.push(generateWords());
+//  return   wordNumber.push(generateWords());
 
     
-})
+// })
 
 
-const useWords = () => {
-    const[words, setWords] = useState<string>(generateWords());    
+const useWords = (count: number) => {
+    const[words, setWords] = useState<string>(generateWords(count));    
     
     //Why are we using useCallback here? What does it do ?
     const UpdateWords = useCallback(() => {
-        setWords(generateWords())
-    },[]);
+        setWords(generateWords(count))
+    },[count]);
 
     return {words, UpdateWords}
 }
