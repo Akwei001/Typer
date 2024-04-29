@@ -1,7 +1,9 @@
-import {useState} from "react";
+import {useState, useEffect, useCallback} from "react";
 import useWords from "./useWords";
 import useCountdown from "./useCountdown";
 import useTypings from "./useTypings";
+import { countErrors } from "../utils/helpers";
+
 
 
 //The app can be in 3 states: start, run and finish
@@ -14,9 +16,60 @@ const useEngine = ( ) => {
     const[state, setState] = useState<State>("start");
     const {words, UpdateWords} = useWords(NUMBER_OF_WORDS);
     const {timeLeft, startCountdown, resetCountdown} = useCountdown(COUNTDOWN_SECONDS);
-    const {typed, cursor, clearTyped, resetTotalTyped, totalTyped} = useTypings (state !== "finish")
+    const {typed, cursor, clearTyped, resetTotalTyped, totalTyped} = useTypings (state !== "finish");
 
-    return {state, words, timeLeft, typed}
+    const [errors, setErrors] = useState(0);
+
+    const isStarting = state === "start" && cursor > 0;
+    const areWordsFinished = cursor === words.length;
+
+    const restart = useCallback(() => {
+        // debug("restarting...");
+        resetCountdown();
+        resetTotalTyped();
+        setState("start");
+        setErrors(0);
+        UpdateWords();
+        clearTyped();
+      }, [clearTyped, UpdateWords, resetCountdown, resetTotalTyped]);
+
+    const sumErrors = useCallback(() => {
+        // debug(`cursor: ${cursor} - words.length: ${words.length}`);
+        const wordsReached = words.substring(0, Math.min(cursor, words.length));
+        setErrors((prevErrors) => prevErrors + countErrors(typed, wordsReached));
+      }, [typed, words, cursor]);
+
+        // as soon the user starts typing the first letter, we start
+  useEffect(() => {
+    if (isStarting) {
+      setState("run");
+      startCountdown();
+    }
+  }, [isStarting, startCountdown]);
+
+   // when the time is up, we've finished
+   useEffect(() => {
+    if (!timeLeft && state === "run") {
+      // debug("time is up...");
+      setState("finish");
+      sumErrors();
+    }
+  }, [timeLeft, state, sumErrors]);
+
+   /**
+   * when the current words are all filled up,
+   * we generate and show another set of words
+   */
+   useEffect(() => {
+    if (areWordsFinished) {
+      // debug("words are finished...");
+      sumErrors();
+      UpdateWords();
+      clearTyped();
+    }
+  }, [clearTyped, areWordsFinished, UpdateWords, sumErrors]);
+
+    return {state, words, timeLeft, typed, errors, totalTyped, restart}
 }
 
 export default useEngine;

@@ -3,6 +3,7 @@ import RestartButton from './components/RestartButton';
 import Results from './components/Results';
 import UserTypings from './components/UserTypings';
 import useEngine from './hooks/useEngine';
+import { calculateAccuracyPercentage } from "./utils/helpers";
 // import { randomWordString } from './utils/data';
 // import { generateRandomWords } from './utils/data';
 
@@ -104,7 +105,7 @@ return (
 
 
 function App() {
-  const {state, words, timeLeft, typed} = useEngine();
+  const {state, words, timeLeft, typed, errors, totalTyped, restart} = useEngine();
   // const [gameWords, gameWordsCopy] = GenerategameWords();
 
   return (
@@ -121,13 +122,14 @@ function App() {
      
       <RestartButton
         className={"mx-auto mt-10 text-slate-500"}
-        onRestart={() => null}
+        onRestart={restart}
          />
-      <Results 
-      className="mt-10"
-      errors={10}
-      accuracyPercentage={100}
-      total={200}
+       <Results
+        className="mt-10"
+        state={state}
+        errors={errors}
+        accuracyPercentage={calculateAccuracyPercentage(errors, totalTyped)}
+        total={totalTyped}
       />
     </>
   )

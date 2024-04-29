@@ -25,7 +25,7 @@ const randomWords: string[] = [
   
   
   // Generate a string of 12 random words
-   const randomWordString: string = generateRandomWords(0);
+   const randomWordString: string = generateRandomWords(12);
   
   console.log('Random Words:', randomWordString);
 
