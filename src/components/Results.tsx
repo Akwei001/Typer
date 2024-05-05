@@ -1,7 +1,9 @@
 import {motion} from "framer-motion";
 import { formatPercentage } from "../utils/helpers";
+import {State} from '../hooks/useEngine'
 
-const Results = ({errors, accuracyPercentage, total, className} : {
+const Results = ({errors, accuracyPercentage, total, className, state} : {
+  state: State;
     errors: number; 
     accuracyPercentage: number;
     total: number
