@@ -39,27 +39,18 @@ const generateWords = (count: number) => {
  
 }
 
-// const wordNumber: string[] = [];
 
-// Array.from({length: 12}).forEach(() => {
-  
-//     console.log("I work")
-
-//  return   wordNumber.push(generateWords());
-
-    
-// })
 
 
 const useWords = (count: number) => {
     const[words, setWords] = useState<string>(generateWords(count));    
     
     //Why are we using useCallback here? What does it do ?
-    const UpdateWords = useCallback(() => {
+    const updateWords = useCallback(() => {
         setWords(generateWords(count))
     },[count]);
 
-    return {words, UpdateWords}
+    return {words, updateWords}
 }
 
 
