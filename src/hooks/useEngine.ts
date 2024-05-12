@@ -9,37 +9,39 @@ import { countErrors } from "../utils/helpers";
 //The app can be in 3 states: start, run and finish
 export type State = "start" | "run" | "finish";
 
-const NUMBER_OF_WORDS = 12; 
+const NUMBER_OF_WORDS = 12;
 const COUNTDOWN_SECONDS = 30;
 
-const useEngine = ( ) => {
-    const[state, setState] = useState<State>("start");
-    const {words, updateWords} = useWords(NUMBER_OF_WORDS);
-    const {timeLeft, startCountdown, resetCountdown} = useCountdown(COUNTDOWN_SECONDS);
-    const {typed, cursor, clearTyped, resetTotalTyped, totalTyped} = useTypings (state !== "finish");
+const useEngine = () => {
+  const [state, setState] = useState<State>("start");
+  const { timeLeft, startCountdown, resetCountdown } =
+    useCountdown(COUNTDOWN_SECONDS);
+  const { words, updateWords } = useWords(NUMBER_OF_WORDS);
+  const { cursor, typed, clearTyped, totalTyped, resetTotalTyped } = useTypings(
+    state !== "finish"
+  );
+  const [errors, setErrors] = useState(0);
 
-    const [errors, setErrors] = useState(0);
+  const isStarting = state === "start" && cursor > 0;
+  const areWordsFinished = cursor === words.length;
 
-    const isStarting = state === "start" && cursor > 0;
-    const areWordsFinished = cursor === words.length;
+  const restart = useCallback(() => {
+    // debug("restarting...");
+    resetCountdown();
+    resetTotalTyped();
+    setState("start");
+    setErrors(0);
+    updateWords();
+    clearTyped();
+  }, [clearTyped, updateWords, resetCountdown, resetTotalTyped]);
 
-    const restart = useCallback(() => {
-        // debug("restarting...");
-        resetCountdown();
-        resetTotalTyped();
-        setState("start");
-        setErrors(0);
-        updateWords();
-        clearTyped();
-      }, [clearTyped, updateWords, resetCountdown, resetTotalTyped]);
+  const sumErrors = useCallback(() => {
+    // debug(`cursor: ${cursor} - words.length: ${words.length}`);
+    const wordsReached = words.substring(0, Math.min(cursor, words.length));
+    setErrors((prevErrors) => prevErrors + countErrors(typed, wordsReached));
+  }, [typed, words, cursor]);
 
-    const sumErrors = useCallback(() => {
-        // debug(`cursor: ${cursor} - words.length: ${words.length}`);
-        const wordsReached = words.substring(0, Math.min(cursor, words.length));
-        setErrors((prevErrors) => prevErrors + countErrors(typed, wordsReached));
-      }, [typed, words, cursor]);
-
-        // as soon the user starts typing the first letter, we start
+  // as soon the user starts typing the first letter, we start
   useEffect(() => {
     if (isStarting) {
       setState("run");
@@ -47,8 +49,8 @@ const useEngine = ( ) => {
     }
   }, [isStarting, startCountdown]);
 
-   // when the time is up, we've finished
-   useEffect(() => {
+  // when the time is up, we've finished
+  useEffect(() => {
     if (!timeLeft && state === "run") {
       // debug("time is up...");
       setState("finish");
@@ -56,11 +58,11 @@ const useEngine = ( ) => {
     }
   }, [timeLeft, state, sumErrors]);
 
-   /**
+  /**
    * when the current words are all filled up,
    * we generate and show another set of words
    */
-   useEffect(() => {
+  useEffect(() => {
     if (areWordsFinished) {
       // debug("words are finished...");
       sumErrors();
@@ -69,7 +71,7 @@ const useEngine = ( ) => {
     }
   }, [clearTyped, areWordsFinished, updateWords, sumErrors]);
 
-    return {state, words, timeLeft, typed, errors, totalTyped, restart}
-}
+  return { state, words, typed, errors, restart, timeLeft, totalTyped };
+};
 
 export default useEngine;

@@ -115,8 +115,8 @@ function App() {
    
       {/* <GameWordList gameWords={randomWordString}/> */}
       <GeneratedWords randomWordString={randomWordString}/>
-      <UserTypings className="absolute inset-0" userInput={typed} words={randomWordString} />
-      {/* <UserTypings className="absolute inset-0" userInput={typed} words={words} /> */}
+      {/* <UserTypings className="absolute inset-0" userInput={typed} words={randomWordString} /> */}
+      <UserTypings className="absolute inset-0" userInput={typed} words={words} />
       </WordsContainer>
       
       

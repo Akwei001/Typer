@@ -22,3 +22,9 @@ export const countErrors = (actual: string, expected: string) => {
   
     return 0;
   };
+
+  // export const debug = (str: string) => {
+  //   if (process.env.NODE_ENV === "development") {
+  //     console.debug(str);
+  //   }
+  // };
