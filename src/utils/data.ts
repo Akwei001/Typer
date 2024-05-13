@@ -3,8 +3,13 @@ const randomWords: string[] = [
     'apple', 'banana', 'carrot', 'dog', 'elephant', 'flower', 'guitar',
     'happiness', 'island', 'jungle', 'koala', 'lemon', 'mountain', 'ninja',
     'orange', 'penguin', 'queen', 'rainbow', 'sunset', 'tiger', 'unicorn',
-    'victory', 'watermelon', 'xylophone', 'yoga', 'zebra'
+    'victory', 'watermelon', 'xylophone', 'yoga', 'zebra', 'ant', 'butterfly',
+    'chocolate', 'dolphin', 'eagle', 'fire', 'giraffe', 'honey', 'ice cream',
+    'jaguar', 'kiwi', 'lizard', 'moon', 'night', 'ocean', 'panda', 'quill',
+    'river', 'seahorse', 'tornado', 'umbrella', 'volcano', 'whale', 'xylophone',
+    'yacht', 'zeppelin', 'astronaut', 'ballet', 'cactus', 'daisy', 'elephant'
   ];
+  
   
   // Generate a string of 12 random words
   export const generateRandomWords = (count: number): string => {
