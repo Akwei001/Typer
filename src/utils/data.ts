@@ -7,7 +7,7 @@ const randomWords: string[] = [
     'chocolate', 'dolphin', 'eagle', 'fire', 'giraffe', 'honey', 'ice cream',
     'jaguar', 'kiwi', 'lizard', 'moon', 'night', 'ocean', 'panda', 'quill',
     'river', 'seahorse', 'tornado', 'umbrella', 'volcano', 'whale', 'xylophone',
-    'yacht', 'zeppelin', 'astronaut', 'ballet', 'cactus', 'daisy', 'elephant'
+    'yacht', 'zeppelin', 'astronaut', 'ballet', 'cactus', 'daisy', 'elephant', 'exta'
   ];
   
   
