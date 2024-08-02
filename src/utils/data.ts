@@ -29,6 +29,9 @@ const randomWords: string[] = [
   ];
 
 
+  export const randomCodeSnippet: string = codeSnippets[Math.floor(Math.random() * codeSnippets.length)];
+
+
   
   
   // Generate a string of 12 random words
