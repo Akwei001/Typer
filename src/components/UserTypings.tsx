@@ -10,15 +10,13 @@ const UserTypings = ({
   words: string;
   className?: string;
 }) => {
-  const typedCharacters = userInput.split("");
-
   return (
     <div className={className}>
-      {typedCharacters.map((char, index) => (
+      {words.split("").map((char, index) => (
         <Character
           key={`${char}_${index}`}
-          actual={char}
-          expected={words[index]}
+          actual={userInput[index]}
+          expected={char}
         />
       ))}
       <Caret />
@@ -35,16 +33,18 @@ const Character = ({
 }) => {
   const isCorrect = actual === expected;
   const isWhiteSpace = expected === " ";
+  const isExtraInput = actual && !expected;
 
   return (
     <span
       className={cn({
-        "text-red-500": !isCorrect && !isWhiteSpace,
+        "text-red-500": !isCorrect && !isWhiteSpace && !isExtraInput,
         "text-yellow-400": isCorrect && !isWhiteSpace,
         "bg-red-500/50": !isCorrect && isWhiteSpace,
+        "text-gray-400": isExtraInput,
       })}
     >
-      {expected}
+      {expected || actual}
     </span>
   );
 };
