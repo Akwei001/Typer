@@ -71,7 +71,7 @@ const useEngine = () => {
     }
   }, [clearTyped, areWordsFinished, updateWords, sumErrors]);
 
-  return { state, words, typed, errors, restart, timeLeft, totalTyped };
+  return { state, words, typed, errors, restart, timeLeft, totalTyped, cursor };
 };
 
 export default useEngine;

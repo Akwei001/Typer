@@ -6,10 +6,14 @@ const UserTypings = ({
   words,
   className = "",
 }: {
+  
   userInput: string;
   words: string;
   className?: string;
 }) => {
+  console.log('UserTypings rendered');
+  console.log('userInput:', userInput);
+  console.log('words:', words);
   return (
     <div className={className}>
       {words.split("").map((char, index) => (
@@ -17,10 +21,13 @@ const UserTypings = ({
           key={`${char}_${index}`}
           actual={userInput[index]}
           expected={char}
+          
         />
       ))}
-      <Caret />
+      
+      <Caret left={userInput.length} />
     </div>
+    
   );
 };
 
@@ -34,6 +41,8 @@ const Character = ({
   const isCorrect = actual === expected;
   const isWhiteSpace = expected === " ";
   const isExtraInput = actual && !expected;
+
+  console.log(`Character component: actual '${actual}', expected '${expected}', isCorrect: ${isCorrect}`);
 
   return (
     <span
