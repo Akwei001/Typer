@@ -50,7 +50,7 @@ function App() {
     <>
       <CountdownTimer timeLeft={timeLeft} />
       <WordsContainer>
-        <GeneratedWords randomWordString={words}/>
+        {/* <GeneratedWords randomWordString={words} key={words}/> */}
         <UserTypings className="absolute inset-0" 
           userInput={typed} 
           words={words} />
