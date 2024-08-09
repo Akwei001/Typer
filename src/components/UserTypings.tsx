@@ -53,7 +53,7 @@ const Character = ({
         "text-gray-400": isExtraInput,
       })}
     >
-      {expected || actual}
+      {actual}
     </span>
   );
 };
